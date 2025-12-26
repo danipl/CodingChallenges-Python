@@ -39,6 +39,7 @@ class Solution:
                 placement += 1
 
         # Original: nums[placement:] = [0] * (len(nums) - placement)
+        # To avoid O(n) space complexity from list slicing, fill zeros manually
         for i in range(placement, len(nums)):
             nums[i] = 0
 
