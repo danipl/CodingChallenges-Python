@@ -15,7 +15,7 @@ PYTHON INTERVIEW CHEAT-SHEET: ARRAYS (LOW)
 
 
 class Solution:
-    def move_zeroes(self, nums: list[int]) -> None:
+    def move_zeroes(self, nums: list[int]):
         """
         PROBLEM: MOVE ZEROES
         Given an integer array 'nums', move all 0's to the end of it while
@@ -30,15 +30,15 @@ class Solution:
         """
         # Time: O(1) - early return for edge case
         if len(nums) < 2:
-            return nums
+            return
 
-        placement = 0  # Keeps the placement for discovered non-zero
+        placement = 0
 
         # Time: O(n) - single pass through array
         # Space: O(1) - only using a pointer variable
         for val in nums:
             if val != 0:
-                nums[placement] = val  # Time: O(1) - array assignment
+                nums[placement] = val
                 placement += 1
 
         # Original: nums[placement:] = [0] * (len(nums) - placement)
@@ -46,9 +46,7 @@ class Solution:
         # Time: O(n) - worst case fills entire array with zeros
         # Space: O(1) - in-place modification
         for i in range(placement, len(nums)):
-            nums[i] = 0  # Time: O(1) - array assignment
-
-        return nums
+            nums[i] = 0
 
 
 class TestMoveZeroes(unittest.TestCase):
