@@ -28,20 +28,25 @@ class Solution:
         :param nums: A list of integers.
         :return: None (Modify nums in-place).
         """
+        # Time: O(1) - early return for edge case
         if len(nums) < 2:
             return nums
 
         placement = 0  # Keeps the placement for discovered non-zero
 
+        # Time: O(n) - single pass through array
+        # Space: O(1) - only using a pointer variable
         for val in nums:
             if val != 0:
-                nums[placement] = val
+                nums[placement] = val  # Time: O(1) - array assignment
                 placement += 1
 
         # Original: nums[placement:] = [0] * (len(nums) - placement)
         # To avoid O(n) space complexity from list slicing, fill zeros manually
+        # Time: O(n) - worst case fills entire array with zeros
+        # Space: O(1) - in-place modification
         for i in range(placement, len(nums)):
-            nums[i] = 0
+            nums[i] = 0  # Time: O(1) - array assignment
 
         return nums
 
