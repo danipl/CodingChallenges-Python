@@ -1,7 +1,7 @@
 import unittest
 
 """
-PYTHON INTERVIEW CHEAT-SHEET: ARRAYS (MEDIUM / GREEDY)
+PYTHON INTERVIEW CHEAT-SHEET: ARRAYS (EASY / GREEDY)
 ------------------------------------------------------
 1. Greedy Logic: In problems where you can make multiple transactions, 
    look for "local" gains. If you can profit from one day to the next, 
