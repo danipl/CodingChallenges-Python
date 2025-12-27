@@ -56,7 +56,7 @@ class Solution:
         k = last_unique_index + 1
 
         # Optional: True in-place resize for Pythonic completeness
-        # Time: O(k) - Slice assignment copies k elements; Space: O(1) - In-place modification
+        # Time: O(n + k) > O(k) - Original n deletes + Slice assignment copies k elements; Space: O(1) - In-place modification
         # nums[:] = nums[:k]
 
         # Time: O(1) - Return operation
