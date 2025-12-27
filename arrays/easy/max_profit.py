@@ -32,16 +32,19 @@ class Solution:
         :param prices: A list of integers (stock prices).
         :return: The maximum integer profit.
         """
-        if len(prices) < 2:  # Time: O(1) - constant time check, Space: O(1)
+        if len(prices) < 2:
             return 0
 
-        min_price = float('inf')  # Space: O(1) - single variable to track minimum price seen so far
-        max_p = 0  # Space: O(1) - single variable to track maximum profit
-        for price in prices:  # Time: O(n) - iterate through all prices once
-            min_price = min(min_price, price)  # Time: O(1) - update minimum price if current is lower
-            max_p = max(max_p, price - min_price)  # Time: O(1) - calculate profit and update maximum
+        min_price = float('inf')
+        max_p = 0
+        # Time: O(n) - iterate through all prices once
+        for price in prices:
+            min_price = min(min_price, price)
+            max_p = max(max_p, price - min_price)
 
-        return max_p  # Time: O(1) - return result
+        # Overall Time Complexity: O(n), Overall Space Complexity: O(1)
+        return max_p
+
 
 class TestBestTimeToBuySell(unittest.TestCase):
     def setUp(self):

@@ -34,22 +34,17 @@ class Solution:
         :param prices: A list of integers.
         :return: Total maximum profit.
         """
-        # Edge case: if less than 2 prices, no transaction possible
         # Time: O(1), Space: O(1)
         if len(prices) < 2:
             return 0
 
-        # Initialize profit accumulator
         # Space: O(1)
         max_profit = 0
 
-        # Greedy approach: capture every positive price difference
         # Time: O(n) where n = len(prices), as we iterate once through the array
         # Space: O(1) as we only use constant extra space
         for idx in range(1, len(prices)):
-            # Calculate daily price difference
             diff = prices[idx] - prices[idx - 1]
-            # If price increased, add the gain (equivalent to buy yesterday, sell today)
             if diff > 0:
                 max_profit += diff
 

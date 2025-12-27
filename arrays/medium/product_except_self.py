@@ -35,30 +35,14 @@ class Solution:
         n = len(nums)
         res = [1] * n
 
-        # Pass 1: Prefix Products
-        # Calculate the product of all elements to the LEFT of i
-        # For each index i, res[i] stores the cumulative product of all elements
-        # before index i (nums[0] * nums[1] * ... * nums[i-1]).
-        # The 'prefix' variable acts as a running product that accumulates values
-        # as we iterate left-to-right. Initially, res[0] = 1 (no elements to its left),
-        # then res[1] = nums[0], res[2] = nums[0] * nums[1], and so on.
-        # Time: O(n), Space: O(1) excluding output array
         prefix = 1
+        # Time: O(n), Space: O(1) excluding output array
         for i in range(n):
             res[i] = prefix
             prefix *= nums[i]
 
-        # Pass 2: Suffix Products
-        # Calculate the product of all elements to the RIGHT of i
-        # and multiply it by the existing prefix product in res[i]
-        # For each index i (traversing right-to-left), res[i] currently holds the prefix
-        # product (all elements to the left of i). We now multiply it by the 'suffix' variable,
-        # which represents the cumulative product of all elements to the right of i.
-        # The 'suffix' variable starts at 1 (no elements to the right of the last index),
-        # then as we move left, suffix accumulates: nums[n-1], nums[n-1]*nums[n-2], etc.
-        # After this pass, res[i] = nums[0]*...*nums[i-1] * nums[i+1]*...*nums[n-1].
-        # Time: O(n), Space: O(1) excluding output array
         suffix = 1
+        # Time: O(n), Space: O(1) excluding output array
         for i in range(n - 1, -1, -1):
             res[i] *= suffix
             suffix *= nums[i]

@@ -32,15 +32,19 @@ class Solution:
         :param target: The integer sum to find.
         :return: A list containing the two indices.
         """
-        number_by_index: dict[int, int] = {}  # Space: O(n) - stores up to n elements
+        # Space: O(n) - stores up to n elements
+        number_by_index: dict[int, int] = {}
 
-        for idx, val in enumerate(nums):  # Time: O(n) - single pass through array
-            complement = target - val  # Time: O(1) - arithmetic operation
-            if complement in number_by_index:  # Time: O(1) - hash table lookup
+        # Time: O(n) - single pass through array
+        for idx, val in enumerate(nums):  
+            complement = target - val  
+            if complement in number_by_index:  
                 return [number_by_index[complement], idx]
-            number_by_index[val] = idx  # Time: O(1) - hash table insertion
+            number_by_index[val] = idx
 
-        return []  # Time: O(1) - return empty list if no solution found
+        # Overall Time Complexity: O(n) - single pass through the array
+        # Overall Space Complexity: O(n) - dictionary stores at most n elements
+        return [] 
 
 
 class TestTwoSum(unittest.TestCase):
