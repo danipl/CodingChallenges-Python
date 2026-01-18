@@ -254,7 +254,7 @@ Initial:     [1] -> [2] -> [3] -> [4] -> None
              s,f
 
 Step 1:      [1] -> [2] -> [3] -> [4] -> None
-                    s             f
+                    s      f
 
 Step 2:      [1] -> [2] -> [3] -> [4] -> None
                            s             f (fast is None, loop ends)
@@ -277,6 +277,61 @@ Step 2:      [1] -> [2] -> [3] -> [4] -> [5] -> None
                            s             f (fast.next is None, loop ends)
 
 Final:       Slow is at [3] (Middle)
+```
+
+**Alternative: Finding the Middle with a Dummy Node**
+
+Using a dummy node shifts the starting position. This is particularly useful when you need to split a list, as it often
+leaves the `slow` pointer at the node *immediately before* the second half when the list size is even.
+
+```python
+def find_middle_with_dummy(head):
+    # Create a dummy node pointing to head
+    dummy = ListNode(0, head)
+    slow = fast = dummy
+
+    # 'fast' moves twice as fast as 'slow'
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+
+    # Returns the node at the end of the first half
+    return slow
+```
+
+**Step-by-Step Visualization (even elements with dummy):**
+
+```text
+List: [1] -> [2] -> [3] -> [4] -> None
+Initial:  [D] -> [1] -> [2] -> [3] -> [4] -> None
+          s,f
+          
+Step 1:   [D] -> [1] -> [2] -> [3] -> [4] -> None
+                 s      f
+                 
+Step 2:   [D] -> [1] -> [2] -> [3] -> [4] -> None
+                        s             f (fast.next is None, loop ends)
+                        
+Final:    Slow is at [2] (First middle / end of first half)
+```
+
+**Step-by-Step Visualization (odd elements with dummy):**
+
+```text
+List: [1] -> [2] -> [3] -> [4] -> [5] -> None
+Initial:  [D] -> [1] -> [2] -> [3] -> [4] -> [5] -> None
+          s,f
+          
+Step 1:   [D] -> [1] -> [2] -> [3] -> [4] -> [5] -> None
+                 s      f
+                 
+Step 2:   [D] -> [1] -> [2] -> [3] -> [4] -> [5] -> None
+                        s             f
+                        
+Step 3:   [D] -> [1] -> [2] -> [3] -> [4] -> [5] -> None
+                               s                    f (fast is None, loop ends)
+                               
+Final:    Slow is at [3] (Exact middle)
 ```
 
 #### 6. Solution: Removing N-th Node from End
