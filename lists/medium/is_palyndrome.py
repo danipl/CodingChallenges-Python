@@ -39,8 +39,7 @@ class Solution:
         if not head or not head.next:
             return True
 
-        dummy = ListNode()
-        dummy.next = head
+        dummy = ListNode(next=head)
 
         slow = fast = dummy
 
@@ -51,6 +50,7 @@ class Solution:
 
         current = slow.next
         slow.next = None
+
         prev = None
 
         # Step 2: Reverse second half - O(n) time, O(1) space

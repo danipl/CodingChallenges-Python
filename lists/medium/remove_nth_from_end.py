@@ -41,8 +41,7 @@ class Solution:
         if not head:
             return head
 
-        dummy = ListNode()
-        dummy.next = head
+        dummy = ListNode(next=head)
 
         slow = curr = dummy
 
