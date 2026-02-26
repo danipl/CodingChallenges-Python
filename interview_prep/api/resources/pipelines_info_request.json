@@ -1,0 +1,26 @@
+[
+  {
+    "run_id": "b-101",
+    "repo": "core-api",
+    "status": "success",
+    "failed_stage": null
+  },
+  {
+    "run_id": "b-102",
+    "repo": "core-api",
+    "status": "failed",
+    "failed_stage": "docker_build"
+  },
+  {
+    "run_id": "b-103",
+    "repo": "payment-service",
+    "status": "failed",
+    "failed_stage": "integration_tests"
+  },
+  {
+    "run_id": "b-104",
+    "repo": "core-api",
+    "status": "failed",
+    "failed_stage": "docker_build"
+  }
+]
