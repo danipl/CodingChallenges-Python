@@ -1,30 +1,32 @@
+import asyncio
 import random
 import time
-from concurrent.futures import as_completed
-from concurrent.futures.thread import ThreadPoolExecutor
+
+import httpx
 
 
-def io_task(name, min_time, max_time):
+async def io_task(name, min_time, max_time):
     print(f"[{name}] Starting...")
 
     last_time = random.randint(min_time, max_time)
-    time.sleep(last_time)
+    await asyncio.sleep(last_time)
+
+    request_time = time.time()
+    response = httpx.get("http://www.google.com")
+    request_time = time.time() - request_time
 
     print(f"[{name}] Released.")
 
-    return last_time
+    return f"[{name}] lasts {(request_time * 100):.2f}ms with {response.status_code}"
 
 
-if __name__ == '__main__':
-    with ThreadPoolExecutor(max_workers=50) as executor:
-        futures = {executor.submit(io_task, f"name_{item}", 2, 10): f"name_{item}" for item in range(20)}
-        result = []
-        for future in as_completed(futures):
-            task_name = futures[future]
-            try:
-                result.append(f"[{task_name}] lasts {future.result(timeout=30)}")
-            except TimeoutError as te:
-                print(f"{task_name} failed: {te}")
+async def run_task():
+    futures = {io_task(f"name_{item}", 2, 10): f"name_{item}" for item in range(20)}
+    result = await asyncio.gather(*futures)
     print("")
     for line in result:
         print(line)
+
+
+if __name__ == '__main__':
+    asyncio.run(run_task())
