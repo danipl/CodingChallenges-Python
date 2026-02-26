@@ -21,7 +21,7 @@ async def io_task(name, min_time, max_time):
 
 
 async def run_task():
-    futures = {io_task(f"name_{item}", 2, 10): f"name_{item}" for item in range(20)}
+    futures = [io_task(f"name_{item}", 2, 10) for item in range(20)]
     result = await asyncio.gather(*futures)
     print("")
     for line in result:
