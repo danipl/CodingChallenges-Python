@@ -1,0 +1,20 @@
+[
+  {
+    "id": 101,
+    "title": "Update ingress routing",
+    "state": "open",
+    "labels": ["bug", "needs-sandbox"]
+  },
+  {
+    "id": 102,
+    "title": "Fix memory leak",
+    "state": "closed",
+    "labels": ["needs-sandbox"]
+  },
+  {
+    "id": 103,
+    "title": "Add Karpenter node pool",
+    "state": "open",
+    "labels": ["enhancement"]
+  }
+]

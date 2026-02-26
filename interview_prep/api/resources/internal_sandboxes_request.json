@@ -1,0 +1,9 @@
+{
+  "count": 4,
+  "data": [
+    {"id": "sbx-111", "owner": "alice", "status": "running", "cost_per_hour": 1.50},
+    {"id": "sbx-222", "owner": "bob", "status": "abandoned", "cost_per_hour": 2.25},
+    {"id": "sbx-333", "owner": "charlie", "status": "failed", "cost_per_hour": 0.75},
+    {"id": "sbx-444", "owner": "alice", "status": "abandoned", "cost_per_hour": 1.25}
+  ]
+}
