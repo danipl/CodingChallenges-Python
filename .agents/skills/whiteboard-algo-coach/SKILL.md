@@ -113,7 +113,14 @@ class Solution:
         :param input: [Description].
         :return: [Description].
         """
-        pass
+        # Space: O(...) - what occupies space
+        # Time: O(...) - what drives time cost
+        for item in input:
+            # per-operation logic
+
+        # Overall Time Complexity: O(...) - brief explanation
+        # Overall Space Complexity: O(...) - brief explanation
+        return result
 
 
 class TestSolution(unittest.TestCase):
@@ -148,7 +155,7 @@ Tailor the cheat sheet to the topic. Examples:
 When the user submits their code or asks for feedback/analysis:
 
 1. **Locate the challenge file** in the repository at `<topic>/<difficulty>/<name>.py`.
-2. **Read the current file** to see the user's implementation.
+2. **Read the current file** to get the latest version of the user's implementation. **Always read the file fresh** — never rely on cached or previous versions.
 3. **Analyze the code** and follow one of these paths:
 
 ### Path A: Significant Improvements Needed (The "Mentor" Path)
@@ -168,6 +175,45 @@ If the solution is correct and efficient:
 2. **Complexity Analysis:** Provide the Time and Space complexity using LaTeX notation (e.g., $O(n)$). Explain exactly which parts of the code contribute to these complexities.
 3. **Whiteboard Tips:** Suggest "Refining for the Whiteboard" (e.g., naming, drawing the logic).
 4. **The "Whiteboard Secret":** Give one tip on how an interviewer might try to "follow up" or "pivot" this question (e.g., "What if the data doesn't fit in memory?").
+
+## Phase 3: Exercise Completion (Triggered When User Says "Done" / "Finished")
+
+When the user considers the exercise complete:
+
+1. **Read the current file** to get the final version of the user's implementation.
+2. **Inject inline Big O comments** into the solution method, following this exact structure (based on existing completed challenges):
+
+### Inline Big O Comment Format
+
+Place comments at three levels within the solution:
+
+```python
+class Solution:
+    def method_name(self, param: Type) -> ReturnType:
+        """..."""
+        # Setup/initialization
+        data_structure = ...
+
+        # Space: O(n) - explanation of what occupies space
+        # Time: O(n) - explanation of what drives time cost
+        for item in data:
+            # per-operation logic
+
+        # Overall Time Complexity: O(n) - brief explanation
+        # Overall Space Complexity: O(n) - brief explanation
+        return result
+```
+
+**Rules for Big O comments:**
+- **Per-block comments** (`# Time: O(...)` / `# Space: O(...)`) go right before the key operation (loop, recursion, data structure usage).
+- **Overall summary** (`# Overall Time Complexity: O(...)` / `# Overall Space Complexity: O(...)`) goes right before the `return` statement.
+- Each comment includes a **brief explanation** after the dash (e.g., `# Time: O(N) - visit each node once`).
+- Use **consistent casing**: `O(N)` for tree/graph node counts, `O(n)` for array/list lengths.
+- If space is dominated by both auxiliary structures AND the return value, mention both (e.g., `# Space O(N) for result + O(W) for queue`).
+
+3. **Write the updated file** with the Big O comments injected.
+4. **Run the tests** to confirm the solution still passes after comment injection.
+5. **Announce completion** with a summary: grade, final complexity, and any whiteboard tips.
 
 ## Grading Rubric
 
