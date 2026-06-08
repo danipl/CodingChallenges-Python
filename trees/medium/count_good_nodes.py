@@ -1,3 +1,4 @@
+import sys
 import unittest
 from typing import Optional
 
@@ -45,7 +46,23 @@ class Solution:
         :param root: Root of the binary tree.
         :return: Number of good nodes in the tree.
         """
-        pass
+        if not root:
+            return 0
+        # Overall Time Complexity: O(N) - visits each node exactly once
+        # Overall Space Complexity: O(H) - recursion stack depth equals tree height
+        return self.count_good_nodes(root, -sys.maxsize - 1)
+
+    def count_good_nodes(self, node: Optional[TreeNode], max_so_far: int) -> int:
+        if not node:
+            return 0
+        current_good = 0
+        if node.val >= max_so_far:
+            current_good = 1
+            max_so_far = node.val
+        # Time: O(N) - each node visited once across both recursive branches
+        # Space: O(H) - max recursion depth equals tree height
+        return current_good + self.count_good_nodes(node.right, max_so_far) + self.count_good_nodes(node.left,
+                                                                                                    max_so_far)
 
 
 class TestSolution(unittest.TestCase):
