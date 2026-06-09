@@ -76,7 +76,7 @@ Before proposing or creating any challenge:
 
 2. **Helper Classes**: If the topic requires data structures (e.g., `TreeNode`, `ListNode`), define them before the `Solution` class.
 
-3. **Skeleton Code**: A `class Solution` with method signatures, type hints, and a full docstring. Use `pass` as placeholder.
+3. **Skeleton Code**: A `class Solution` with method signatures, type hints, and a full docstring. The method body MUST contain ONLY `pass` — no implementation, no Big O comments, no return statements. The user solves it.
 
 4. **Integrated Test Suite**: `class TestSolution(unittest.TestCase)` with at least 5 varied test cases (including edge cases like empty inputs, single elements, or extreme values).
 
@@ -113,14 +113,7 @@ class Solution:
         :param input: [Description].
         :return: [Description].
         """
-        # Space: O(...) - what occupies space
-        # Time: O(...) - what drives time cost
-        for item in input:
-            # per-operation logic
-
-        # Overall Time Complexity: O(...) - brief explanation
-        # Overall Space Complexity: O(...) - brief explanation
-        return result
+        pass
 
 
 class TestSolution(unittest.TestCase):
@@ -136,6 +129,8 @@ class TestSolution(unittest.TestCase):
 if __name__ == "__main__":
     unittest.main()
 ```
+
+**CRITICAL**: The `Solution` method body MUST contain ONLY `pass`. Do NOT include any implementation logic, Big O comments, or return statements. The user must solve it themselves.
 
 ### Topic-Specific Cheat Sheet Guidelines
 
