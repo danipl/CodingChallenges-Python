@@ -51,46 +51,123 @@ trees/
 
 **File naming:** `<snake_case_problem_name>.py` (e.g., `two_sum.py`, `product_except_self.py`).
 
-## Phase 0: Skill Assessment (MANDATORY — runs before every new challenge)
+## Algorithm Pattern Registry
 
-Before proposing any challenge, assess the user's current skill level:
+Each challenge is tagged with its **primary pattern**. Track which patterns the user has encountered per topic. This drives intelligent progression — not just "how many" but "what kind."
+
+### Pattern Matrix by Topic & Difficulty
+
+| Topic | Difficulty | Core Patterns to Cover |
+|-------|-----------|----------------------|
+| **Graphs** | Easy | BFS/DFS traversal, reachability, connected components (basic), adjacency list construction |
+| | Medium | Topological sort (Kahn's), cycle detection, shortest path (unweighted BFS), union-find basics |
+| | Hard | Dijkstra's shortest path, Bellman-Ford, MST (Kruskal/Prim), advanced union-find with path compression |
+| | Very Hard | Network flow (Ford-Fulkerson), bipartite matching, Tarjan's SCC, A* search |
+| **Arrays** | Easy | Two pointers, sliding window (fixed-size), hash map frequency, prefix sum basics |
+| | Medium | Sliding window (variable-size), binary search on answer, monotonic stack, Kadane's algorithm |
+| | Hard | Segment tree basics, advanced DP on arrays, trie applications, sparse table |
+| | Very Hard | Suffix arrays, KMP string matching, Rabin-Karp rolling hash |
+| **Strings** | Easy | Palindrome detection, anagram grouping, string reversal, character frequency |
+| | Medium | Longest substring patterns, string compression, valid parenthesis, regex-like matching |
+| | Hard | Edit distance, word break DP, longest palindromic substring (Manacher's) |
+| | Very Hard | Suffix tree applications, advanced pattern matching, string hashing |
+| **Trees** | Easy | BFS level-order, DFS (pre/in/post-order), max depth, symmetry check |
+| | Medium | Lowest common ancestor, path sum variants, BST validation, serialization/deserialization |
+| | Hard | Tree diameter, vertical order traversal, Morris traversal (O(1) space), tree DP |
+| | Very Hard | Segment tree on trees, heavy-light decomposition concepts, tree isomorphism |
+| **Lists** | Easy | Reversal (iterative/recursive), merge sorted, remove element, fast/slow pointers |
+| | Medium | Cycle detection variants, reorder list, rotate list, flatten nested structure |
+| | Hard | Merge k sorted lists, clone with random pointer, LRU cache design |
+| | Very Hard | Complex in-place rearrangements, interleaving patterns, skip list operations |
+| **Sorting** | Easy | Binary search (sorted arrays), basic merge concepts, insertion sort patterns |
+| | Medium | Custom comparators, merge intervals, top K elements, quickselect basics |
+| | Hard | Quickselect with median-of-medians, external sort concepts, counting/radix sort |
+| | Very Hard | Advanced selection algorithms, streaming sort, parallel sort patterns |
+| **Heaps** | Easy | Basic heap operations, min/max extraction, heap property validation |
+| | Medium | Top K patterns, merge K sorted streams, running median (two heaps) |
+| | Hard | Custom heap comparators, heap + greedy combinations, interval scheduling with heap |
+| | Very Hard | Advanced streaming algorithms, Fibonacci heap concepts, heap-based simulation |
+| **Hashing** | Easy | Frequency counting, deduplication, two-sum pattern, set operations |
+| | Medium | Group anagrams, subarray sum equals K, LRU cache, hash + sliding window |
+| | Hard | Rolling hash for string matching, hash + graph combinations, consistent hashing basics |
+| | Very Hard | Bloom filter concepts, cuckoo hashing, cryptographic hash applications |
+| **Recursion** | Easy | Factorial/Fibonacci, basic tree recursion, countdown patterns |
+| | Medium | Backtracking (subsets, permutations, combinations), memoization with `@lru_cache` |
+| | Hard | DP with state compression, advanced backtracking (N-queens, Sudoku solver) |
+| | Very Hard | Minimax with alpha-beta pruning, constraint satisfaction, memoization on DAGs |
+
+## Phase 0: Skill Assessment & Progression (MANDATORY — runs before every new challenge)
+
+Before proposing any challenge, assess the user's current skill level using the **Dual-Gate Progression System**:
+
+### Step 0.1: Scan & Classify
 
 1. **Scan all `.py` files** across all topic/difficulty directories.
 2. **Classify each file**:
    - **Completed**: Contains actual implementation logic (no `raise NotImplementedError` or `pass` as the only body).
    - **Skeleton**: Contains only `pass` or `raise NotImplementedError` — not yet solved.
-3. **Build a skill profile** by counting completed challenges per topic and difficulty:
+3. **Extract the primary pattern** from each completed challenge by reading its docstring and implementation. Map it to the Pattern Registry above.
 
-   ```
-   Topic       | Easy | Medium | Hard | Very Hard | Level
-   ------------|------|--------|------|-----------|--------
-   Arrays      |  13  |   3    |  0   |     0     | STRONG
-   Trees       |   5  |   4    |  0   |     0     | STRONG
-   Lists       |   3  |   4    |  1   |     0     | GOOD
-   Strings     |   1  |   0    |  0   |     0     | BASIC
-   Sorting     |   1  |   0    |  0   |     0     | BASIC
-   Graphs      |   0  |   0    |  0   |     0     | BEGINNER
-   Heaps       |   0  |   0    |  0   |     0     | BEGINNER
-   Hashing     |   0  |   0    |  0   |     0     | BEGINNER
-   Recursion   |   0  |   0    |  0   |     0     | BEGINNER
-   ```
+### Step 0.2: Build Skill Profile
 
-4. **Skill Level Definitions**:
-   - **BEGINNER** (0 completed): Start with **Easy** only. Never propose Medium/Hard.
-   - **BASIC** (1-2 completed): Can attempt **Easy** confidently, **Medium** with guidance.
-   - **GOOD** (3-5 completed): Ready for **Medium**, occasional **Hard** if adjacent topics are strong.
-   - **STRONG** (6+ completed): Ready for **Hard** and **Very Hard**.
+Build a profile tracking both **count** and **pattern coverage** per topic:
 
-5. **Cross-topic transfer**: If the user is STRONG in a related topic, they may skip one difficulty level:
-   - Trees STRONG → Graphs can start at Medium (trees are graphs with constraints).
-   - Lists STRONG → Heaps can start at Medium (both use pointer/index navigation).
-   - Arrays STRONG → Hashing can start at Medium (hashing often applied to arrays).
+```
+Topic       | Easy | Med  | Hard | VH   | Patterns Covered (Easy)        | Status
+------------|------|------|------|------|-------------------------------|--------
+Arrays      |  13  |   3  |  0   |  0   | two-ptr, sliding-win, hashmap | READY→Med
+Trees       |   5  |   4  |  0   |  0   | bfs, dfs, depth, symmetry     | READY→Med
+Lists       |   3  |   4  |  1   |  0   | reverse, merge, fast-slow     | BUILDING
+Graphs      |   1  |   0  |  0   |  0   | bfs-reachability              | BUILDING
+```
 
-6. **Announce the assessment** to the user before proposing a challenge:
-   - Show their current skill profile (abbreviated table).
-   - Highlight gaps (topics with 0 completed).
-   - Recommend the appropriate starting difficulty for the requested topic.
-   - If the user requests a difficulty above their level, warn them and suggest starting lower, but respect their choice if they insist.
+### Step 0.3: Dual-Gate Level-Up Criteria
+
+To advance from difficulty D to D+1 in a topic, **BOTH gates must pass**:
+
+| Transition | Breadth Gate (min completed) | Pattern Gate (min coverage) |
+|------------|---------------------------|---------------------------|
+| Easy → Medium | 4 | 60% of Easy patterns for that topic |
+| Medium → Hard | 3 | 60% of Medium patterns for that topic |
+| Hard → Very Hard | 2 | 50% of Hard patterns for that topic |
+
+**Progression States:**
+- **BEGINNER** (0 completed): Start at Easy. Never propose higher.
+- **BUILDING** (below breadth gate): Continue at current difficulty. Prioritize uncovered patterns.
+- **GAP** (breadth met, pattern gap): Stay at current difficulty. Recommend a challenge that fills the specific pattern gap. Announce which pattern is missing.
+- **READY** (both gates pass): Can level up. Announce readiness and suggest moving to next difficulty, but respect user choice.
+
+### Step 0.4: Smart Challenge Selection
+
+When the user requests a topic (with or without specifying difficulty):
+
+1. **Determine the appropriate difficulty** based on their progression state.
+2. **If GAP state**: Recommend a challenge that covers the missing pattern. Say: *"You've done 4 Easy Graph challenges, but haven't practiced [missing pattern] yet. This one covers it."*
+3. **If BUILDING state**: Continue at current level. Prioritize challenges with uncovered patterns.
+4. **If READY state**: Announce: *"You've mastered Easy [Topic] — 4+ challenges covering [patterns]. Ready for Medium?"* Suggest level-up but respect if they want more practice.
+5. **If user requests a difficulty above their level**: Warn them, explain the gap, but respect their choice.
+
+### Step 0.5: Cross-Topic Transfer
+
+Related topics can accelerate progression by **one difficulty level** if the user is READY or STRONG in the prerequisite:
+
+| Prerequisite Topic | Accelerated Topic | Rationale |
+|-------------------|-------------------|-----------|
+| Trees (READY+) | Graphs | Trees are constrained graphs — traversal patterns transfer directly |
+| Lists (READY+) | Heaps | Both use index/pointer navigation and structural invariants |
+| Arrays (READY+) | Hashing | Hashing is frequently applied to array problems |
+| Sorting (READY+) | Arrays | Binary search and sorted array patterns transfer |
+| Recursion (READY+) | Trees | Tree traversal is recursion applied to tree structure |
+
+Cross-topic transfer reduces the **breadth gate by 1** (e.g., Easy→Medium requires 3 instead of 4) but **does not reduce the pattern gate** — the new topic's patterns must still be covered.
+
+### Step 0.6: Announce Assessment
+
+Before proposing a challenge:
+- Show abbreviated skill profile (only the requested topic + any related topics with transfer potential).
+- State current progression state (BEGINNER / BUILDING / GAP / READY).
+- If GAP: name the missing pattern(s).
+- Recommend the appropriate difficulty.
 
 ## Phase 1: Exercise Delivery (Triggered by Topic & Difficulty)
 
