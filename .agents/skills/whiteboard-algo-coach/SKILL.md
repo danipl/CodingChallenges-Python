@@ -51,6 +51,47 @@ trees/
 
 **File naming:** `<snake_case_problem_name>.py` (e.g., `two_sum.py`, `product_except_self.py`).
 
+## Phase 0: Skill Assessment (MANDATORY — runs before every new challenge)
+
+Before proposing any challenge, assess the user's current skill level:
+
+1. **Scan all `.py` files** across all topic/difficulty directories.
+2. **Classify each file**:
+   - **Completed**: Contains actual implementation logic (no `raise NotImplementedError` or `pass` as the only body).
+   - **Skeleton**: Contains only `pass` or `raise NotImplementedError` — not yet solved.
+3. **Build a skill profile** by counting completed challenges per topic and difficulty:
+
+   ```
+   Topic       | Easy | Medium | Hard | Very Hard | Level
+   ------------|------|--------|------|-----------|--------
+   Arrays      |  13  |   3    |  0   |     0     | STRONG
+   Trees       |   5  |   4    |  0   |     0     | STRONG
+   Lists       |   3  |   4    |  1   |     0     | GOOD
+   Strings     |   1  |   0    |  0   |     0     | BASIC
+   Sorting     |   1  |   0    |  0   |     0     | BASIC
+   Graphs      |   0  |   0    |  0   |     0     | BEGINNER
+   Heaps       |   0  |   0    |  0   |     0     | BEGINNER
+   Hashing     |   0  |   0    |  0   |     0     | BEGINNER
+   Recursion   |   0  |   0    |  0   |     0     | BEGINNER
+   ```
+
+4. **Skill Level Definitions**:
+   - **BEGINNER** (0 completed): Start with **Easy** only. Never propose Medium/Hard.
+   - **BASIC** (1-2 completed): Can attempt **Easy** confidently, **Medium** with guidance.
+   - **GOOD** (3-5 completed): Ready for **Medium**, occasional **Hard** if adjacent topics are strong.
+   - **STRONG** (6+ completed): Ready for **Hard** and **Very Hard**.
+
+5. **Cross-topic transfer**: If the user is STRONG in a related topic, they may skip one difficulty level:
+   - Trees STRONG → Graphs can start at Medium (trees are graphs with constraints).
+   - Lists STRONG → Heaps can start at Medium (both use pointer/index navigation).
+   - Arrays STRONG → Hashing can start at Medium (hashing often applied to arrays).
+
+6. **Announce the assessment** to the user before proposing a challenge:
+   - Show their current skill profile (abbreviated table).
+   - Highlight gaps (topics with 0 completed).
+   - Recommend the appropriate starting difficulty for the requested topic.
+   - If the user requests a difficulty above their level, warn them and suggest starting lower, but respect their choice if they insist.
+
 ## Phase 1: Exercise Delivery (Triggered by Topic & Difficulty)
 
 When the user provides a Topic and Difficulty (Easy, Medium, Hard, Very Hard):
@@ -64,6 +105,26 @@ Before proposing or creating any challenge:
 3. **Cross-reference** your proposed problem against this index. If the same problem (or a near-duplicate covering the same algorithmic pattern) already exists, pick a different one.
 4. **Announce** to the user which problems they've already completed in that topic/difficulty, so they see you're avoiding repeats.
 
+### Step 0.5: Novel Pattern Detection & Teaching (MANDATORY)
+
+Before creating the challenge, determine if it introduces an **algorithm or pattern** not yet present in any completed challenge in the repo:
+
+1. **Identify the core pattern** the challenge teaches (e.g., "Kahn's algorithm for topological sort", "Floyd's cycle detection", "sliding window with two pointers", "BFS for shortest path", "union-find for connected components").
+2. **Scan all completed `.py` files** (those with actual implementations, not skeletons) to check if this pattern has been used before.
+3. **If the pattern is NEW to the repo**:
+   - **Announce it explicitly** to the user before presenting the challenge:
+     ```
+     🆕 NEW PATTERN: [Pattern Name]
+     This challenge introduces [pattern name] — a technique you haven't used yet in this repo.
+
+     What it is: [1-2 sentence explanation]
+     When to use it: [When this pattern applies in interviews]
+     Key insight: [The "aha" moment that makes the pattern click]
+     ```
+   - **Tailor the cheat sheet** in the challenge file to teach this pattern specifically, not just generic Python tips.
+   - **Reference prior patterns** if applicable: "You've used BFS in trees (level_order_traversal.py) — graph BFS works the same way, but with a `visited` set instead of relying on tree structure."
+4. **If the pattern is already known**: Skip the teaching preamble. The user is practicing a familiar pattern.
+
 ### Step 1: Create the Challenge
 
 1. **Determine the file path**: `<topic_dir>/<difficulty>/<snake_case_name>.py`
@@ -76,7 +137,7 @@ Before proposing or creating any challenge:
 
 2. **Helper Classes**: If the topic requires data structures (e.g., `TreeNode`, `ListNode`), define them before the `Solution` class.
 
-3. **Skeleton Code**: A `class Solution` with method signatures, type hints, and a full docstring. The method body MUST contain ONLY `pass` — no implementation, no Big O comments, no return statements. The user solves it.
+3. **Skeleton Code**: A `class Solution` with method signatures, type hints, and a full docstring. The method body MUST contain ONLY `raise NotImplementedError("Implement this method")` — no implementation, no Big O comments, no return statements. The user solves it.
 
 4. **Integrated Test Suite**: `class TestSolution(unittest.TestCase)` with at least 5 varied test cases (including edge cases like empty inputs, single elements, or extreme values).
 
@@ -113,7 +174,7 @@ class Solution:
         :param input: [Description].
         :return: [Description].
         """
-        pass
+        raise NotImplementedError("Implement this method")
 
 
 class TestSolution(unittest.TestCase):
@@ -130,7 +191,7 @@ if __name__ == "__main__":
     unittest.main()
 ```
 
-**CRITICAL**: The `Solution` method body MUST contain ONLY `pass`. Do NOT include any implementation logic, Big O comments, or return statements. The user must solve it themselves.
+**CRITICAL**: The `Solution` method body MUST contain ONLY `raise NotImplementedError("Implement this method")`. Do NOT include any implementation logic, Big O comments, or return statements. The user must solve it themselves.
 
 ### Topic-Specific Cheat Sheet Guidelines
 
