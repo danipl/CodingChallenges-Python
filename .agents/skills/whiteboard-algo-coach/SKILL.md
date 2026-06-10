@@ -298,7 +298,11 @@ If the solution is incorrect, highly sub-optimal, or misses critical edge cases:
 1. **Grade:** Assign a rank (S, A, B, C, or F) based on Correctness, Pythonic Idioms, and Efficiency.
 2. **The "Socratic" Clues:** Do **NOT** provide the corrected code. Instead, provide 2-3 targeted clues or questions to guide the user. (e.g., "Think about how you could avoid the nested loop using a hash map," or "What happens if the input array is empty?").
 3. **Complexity Critique:** Briefly state the complexity of their *current* attempt vs. the *target* complexity.
-4. **Encouragement:** Invite them to try another iteration based on the clues.
+4. **Staff Role Assessment:** Provide a **PASS/FAIL** likelihood for Staff-level interviews:
+   - **FAIL** if: brute-force approach, missing edge cases, sub-optimal complexity, no system-level thinking.
+   - **PASS** if: optimal complexity, handles edge cases, demonstrates tradeoff awareness, can articulate follow-up scaling concerns.
+   - Format: `🏢 Staff Role: FAIL — [1-sentence reason]` or `🏢 Staff Role: PASS — [1-sentence reason]`
+5. **Encouragement:** Invite them to try another iteration based on the clues.
 
 ### Path B: Optimal or Near-Perfect (The "Interviewer" Path)
 
@@ -306,19 +310,23 @@ If the solution is correct and efficient:
 
 1. **Grade:** Assign a final grade (S, A, B, C, or F) based on Correctness, Pythonic Idioms, and Efficiency.
 2. **Complexity Analysis:** Provide the Time and Space complexity using LaTeX notation (e.g., $O(n)$). Explain exactly which parts of the code contribute to these complexities.
-3. **Whiteboard Tips:** Suggest "Refining for the Whiteboard" (e.g., naming, drawing the logic).
-4. **The "Whiteboard Secret":** Give one tip on how an interviewer might try to "follow up" or "pivot" this question (e.g., "What if the data doesn't fit in memory?").
+3. **Staff Role Assessment:** Provide a **PASS/FAIL** likelihood for Staff-level interviews:
+   - **PASS** if: optimal or better-than-expected complexity, handles all edge cases, demonstrates tradeoff awareness, can articulate follow-up scaling concerns, code is clean and maintainable.
+   - **FAIL** if: correct but brute-force, misses subtle edge cases, no discussion of tradeoffs, code is hard to maintain or extend.
+   - Format: `🏢 Staff Role: PASS — [1-sentence reason]` or `🏢 Staff Role: FAIL — [1-sentence reason]`
+4. **Whiteboard Tips:** Suggest "Refining for the Whiteboard" (e.g., naming, drawing the logic).
+5. **The "Whiteboard Secret":** Give one tip on how an interviewer might try to "follow up" or "pivot" this question (e.g., "What if the data doesn't fit in memory?").
 
 ## Phase 3: Exercise Completion (Triggered When User Says "Done" / "Finished")
 
 When the user considers the exercise complete:
 
 1. **Read the current file** to get the final version of the user's implementation.
-2. **Inject inline Big O comments** into the solution method, following this exact structure (based on existing completed challenges):
+2. **Generate inline Big O comments** for the solution method, following the exact structure below. **DO NOT modify the user's code file.** Present the Big O comments in your response as a reference block the user can consult.
 
-### Inline Big O Comment Format
+### Inline Big O Comment Format (Output Only — Do NOT Write to File)
 
-Place comments at three levels within the solution:
+Present the annotated solution in your response with comments at three levels:
 
 ```python
 class Solution:
@@ -344,9 +352,9 @@ class Solution:
 - Use **consistent casing**: `O(N)` for tree/graph node counts, `O(n)` for array/list lengths.
 - If space is dominated by both auxiliary structures AND the return value, mention both (e.g., `# Space O(N) for result + O(W) for queue`).
 
-3. **Write the updated file** with the Big O comments injected.
-4. **Run the tests** to confirm the solution still passes after comment injection.
-5. **Announce completion** with a summary: grade, final complexity, and any whiteboard tips.
+3. **CRITICAL: Do NOT write Big O comments back to the user's file.** The file must remain exactly as the user wrote it. Only present the annotated version in your response output.
+4. **Run the tests** to confirm the solution still passes.
+5. **Announce completion** with a summary: grade, final complexity, Staff role assessment, and any whiteboard tips.
 
 ## Grading Rubric
 

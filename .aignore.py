@@ -1,1 +1,0 @@
-arrays/easy/*.py
