@@ -82,7 +82,11 @@ class Solution:
             if root_x == root_y:
                 return False
 
+<<<<<<< HEAD
             parent[root_x] = root_y
+=======
+            parent[root_y] = root_x
+>>>>>>> 779184cfe5694c70a3652252f45a1d6d51832f23
             return True
 
         # Time: O(n · α(n)) ≈ O(n) — process each edge once, each union is nearly O(1)

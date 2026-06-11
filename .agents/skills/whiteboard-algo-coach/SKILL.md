@@ -322,11 +322,12 @@ If the solution is correct and efficient:
 When the user considers the exercise complete:
 
 1. **Read the current file** to get the final version of the user's implementation.
-2. **Generate inline Big O comments** for the solution method, following the exact structure below. **DO NOT modify the user's code file.** Present the Big O comments in your response as a reference block the user can consult.
+2. **Run the tests** to confirm the solution passes.
+3. **Write inline Big O comments** directly into the user's `.py` file, following the exact structure below. **You MUST modify the file** — this is the user's permanent reference.
 
-### Inline Big O Comment Format (Output Only — Do NOT Write to File)
+### Inline Big O Comment Format (Write to File)
 
-Present the annotated solution in your response with comments at three levels:
+Insert comments into the user's solution method at three levels:
 
 ```python
 class Solution:
@@ -351,10 +352,9 @@ class Solution:
 - Each comment includes a **brief explanation** after the dash (e.g., `# Time: O(N) - visit each node once`).
 - Use **consistent casing**: `O(N)` for tree/graph node counts, `O(n)` for array/list lengths.
 - If space is dominated by both auxiliary structures AND the return value, mention both (e.g., `# Space O(N) for result + O(W) for queue`).
+- **Preserve the user's code exactly** — only insert comments, do not change any logic or variable names.
 
-3. **CRITICAL: Do NOT write Big O comments back to the user's file.** The file must remain exactly as the user wrote it. Only present the annotated version in your response output.
-4. **Run the tests** to confirm the solution still passes.
-5. **Announce completion** with a summary: grade, final complexity, Staff role assessment, and any whiteboard tips.
+4. **Announce completion** with a summary: grade, final complexity, Staff role assessment, and any whiteboard tips.
 
 ## Grading Rubric
 
