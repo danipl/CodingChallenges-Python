@@ -173,6 +173,15 @@ Before proposing a challenge:
 
 When the user provides a Topic and Difficulty (Easy, Medium, Hard, Very Hard):
 
+### ⛔ IMMUTABLE USER SOLUTION RULE (MANDATORY)
+
+**The skill ONLY creates the original skeleton file. It NEVER overwrites, modifies, or removes the user's implementation.**
+
+- **Phase 1 (creation)**: Write the file ONLY if it does not exist yet. If the file already exists with user code, do NOT touch it.
+- **Phase 2 (review)**: Read the file fresh. Analyze the user's code. Do NOT modify the file.
+- **Phase 3 (completion)**: The ONLY time you may modify the user's file is to insert Big-O comments — and ONLY when the user explicitly says "done", "finished", or equivalent. You must preserve every line of the user's code exactly.
+- **If the user wants the challenge file regenerated or fixed**: They will ask explicitly (e.g., "regenerate the challenge", "fix the skeleton"). Do NOT assume this from "review it" or "done".
+
 ### Step 0: No-Repeat Check (MANDATORY)
 
 Before proposing or creating any challenge:
@@ -285,7 +294,9 @@ Tailor the cheat sheet to the topic. Examples:
 
 ## Phase 2: Evaluation (Triggered by User Solution)
 
-When the user submits their code or asks for feedback/analysis:
+When the user submits their code or asks for feedback/analysis (e.g., "review it", "check my solution", "how did I do", "is this correct"):
+
+**IMPORTANT**: Phrases like "review it", "done", "check this" mean the user wants **their solution reviewed** — NOT a review of whether the skill generated the challenge correctly. The challenge file is assumed to be correct. Focus entirely on the user's implementation.
 
 1. **Locate the challenge file** in the repository at `<topic>/<difficulty>/<name>.py`.
 2. **Read the current file** to get the latest version of the user's implementation. **Always read the file fresh** — never rely on cached or previous versions.
@@ -317,9 +328,15 @@ If the solution is correct and efficient:
 4. **Whiteboard Tips:** Suggest "Refining for the Whiteboard" (e.g., naming, drawing the logic).
 5. **The "Whiteboard Secret":** Give one tip on how an interviewer might try to "follow up" or "pivot" this question (e.g., "What if the data doesn't fit in memory?").
 
-## Phase 3: Exercise Completion (Triggered When User Says "Done" / "Finished")
+## Phase 3: Exercise Completion (Triggered ONLY by Explicit "Done" / "Finished")
 
-When the user considers the exercise complete:
+**⛔ CRITICAL: Big-O comments are ONLY written when the user explicitly says "done", "finished", "I'm done", "completed", or equivalent.**
+
+- "review it", "check my solution", "how did I do" → Phase 2 only (feedback, NO file modification).
+- "done", "finished", "I'm done", "mark as complete" → Phase 3 (write Big-O comments to file).
+- If ambiguous, ASK the user: "Do you want me to add Big-O comments and mark this complete?"
+
+When the user explicitly signals completion:
 
 1. **Read the current file** to get the final version of the user's implementation.
 2. **Run the tests** to confirm the solution passes.
@@ -368,6 +385,8 @@ class Solution:
 
 ## Core Principles
 
+- **NEVER overwrite user solutions.** The skill creates the skeleton file once. After that, the user's code is sacred. The ONLY permitted modification is inserting Big-O comments during Phase 3 (explicit "done"/"finished" only).
+- **Distinguish review vs. regeneration.** "review it" / "done" = review user's solution. "regenerate" / "fix the skeleton" = recreate the challenge file. Never confuse these.
 - Use LaTeX for all mathematical and complexity notation.
 - Maintain a professional, encouraging, and rigorous tone.
 - After completing the analysis and feedback of a challenge, **do not** propose a new one until the user explicitly asks for it.
