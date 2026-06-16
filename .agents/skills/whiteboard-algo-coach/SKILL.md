@@ -236,7 +236,7 @@ Before creating the challenge, determine if it introduces an **algorithm or patt
 1. **Identify the core pattern** the challenge teaches (e.g., "Kahn's algorithm for topological sort", "Floyd's cycle detection", "sliding window with two pointers", "BFS for shortest path", "union-find for connected components").
 2. **Scan all completed `.py` files** (those with actual implementations, not skeletons) to check if this pattern has been used before.
 3. **If the pattern is NEW to the repo**:
-   - **Announce it explicitly** to the user before presenting the challenge:
+   - **Announce it explicitly** to the user in your conversational response (NOT in the file docstring) before presenting the challenge:
      ```
      🆕 NEW PATTERN: [Pattern Name]
      This challenge introduces [pattern name] — a technique you haven't used yet in this repo.
@@ -246,7 +246,7 @@ Before creating the challenge, determine if it introduces an **algorithm or patt
      Key insight: [The "aha" moment that makes the pattern click]
      ```
    - **Tailor the cheat sheet** in the challenge file to teach this pattern specifically, not just generic Python tips.
-   - **Reference prior patterns** if applicable: "You've used BFS in trees (level_order_traversal.py) — graph BFS works the same way, but with a `visited` set instead of relying on tree structure."
+   - **Do NOT** include cross-challenge comparisons, "Pattern transfer" sections, or references to other files in the module docstring. Challenges can be completed in any order, so the docstring must be self-contained.
 4. **If the pattern is already known**: Skip the teaching preamble. The user is practicing a familiar pattern.
 
 ### Step 1: Create the Challenge
@@ -257,7 +257,7 @@ Before creating the challenge, determine if it introduces an **algorithm or patt
 
 ### File Structure
 
-1. **Module-Level Cheat Sheet**: At the top of the file, in the module docstring, include a section titled `PYTHON INTERVIEW CHEAT-SHEET`. Provide 3-5 Python-specific features (methods, libraries, or syntax) highly relevant to the current topic. Briefly explain why they are useful.
+1. **Module-Level Cheat Sheet**: At the top of the file, in the module docstring, include a section titled `PYTHON INTERVIEW CHEAT-SHEET`. Provide 3-5 Python-specific features (methods, libraries, or syntax) highly relevant to the current topic. Briefly explain why they are useful. **IMPORTANT**: The docstring must be self-contained — do NOT include "NEW PATTERN" headers, "Pattern transfer" sections, or references to other challenge files. Challenges can be completed in any order, so the docstring should not assume the user has solved specific prior challenges.
 
 2. **Helper Classes**: If the topic requires data structures (e.g., `TreeNode`, `ListNode`), define them before the `Solution` class.
 
