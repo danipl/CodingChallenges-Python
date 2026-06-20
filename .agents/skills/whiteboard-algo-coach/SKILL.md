@@ -199,13 +199,13 @@ Related topics can accelerate progression by **one difficulty level** if the use
 
 Cross-topic transfer reduces the **breadth gate by 1** (e.g., Easy→Medium requires 3 instead of 4) but **does not reduce the pattern gate** — the new topic's patterns must still be covered.
 
-### Step 0.6: Announce Assessment
+### Step 0.6: Announce Assessment & Create Immediately
 
-Before proposing a challenge:
+When the user requests a challenge:
 - Show abbreviated skill profile (only the requested topic + any related topics with transfer potential).
 - State current progression state (BEGINNER / BUILDING / GAP / READY).
 - If GAP: name the missing pattern(s).
-- Recommend the appropriate difficulty.
+- **Immediately create the challenge** — do NOT wait for approval. Announce the new pattern (if applicable) and create the file in the same response.
 
 ## Phase 1: Exercise Delivery (Triggered by Topic & Difficulty)
 
