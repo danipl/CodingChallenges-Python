@@ -66,12 +66,16 @@ class Solution:
             return False
 
         slow = fast = head
+
+        # Time: O(n/2) = O(n) - fast advances 2 steps per iteration, loop runs ⌊n/2⌋ times
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
             if slow == fast:
                 return True
 
+        # Overall Time Complexity: O(n) - single pass through half the list
+        # Overall Space Complexity: O(1) - two pointers only
         return False
 
 
